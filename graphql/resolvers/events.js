@@ -6,7 +6,7 @@ const {
 } = require('./merge');
 
 module.exports = {
-  events: async () => {
+  events: async (args) => {
     try {
       const events = await Event.find()
       return events.map(event => {
@@ -17,13 +17,17 @@ module.exports = {
     }
   },
 
-  createEvent: async (args) => {
+  createEvent: async (args, req) => {
+    if (!req.isAuth) {
+      throw new Error('Unauthorized Access.')
+    }
+
     const event = new Event({
       title: args.eventInput.title,
       description: args.eventInput.description,
       price: args.eventInput.price,
       date: new Date(args.eventInput.date),
-      organiser: '5c44dce7c3583126c130d78a',
+      organiser: req.userId,
     });
 
     let newEvent;
@@ -32,7 +36,7 @@ module.exports = {
       const result = await event.save();
       newEvent = transformEvent(result);
 
-      const organiser = await User.findById('5c44dce7c3583126c130d78a');
+      const organiser = await User.findById(req.userId);
 
       if (!organiser) {
         throw new Error('User not found.')

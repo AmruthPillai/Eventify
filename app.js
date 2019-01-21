@@ -5,9 +5,13 @@ const graphqlHttp = require('express-graphql');
 const schema = require('./graphql/schema/index');
 const resolvers = require('./graphql/resolvers/index');
 
+const auth = require('./middleware/auth');
+
 const app = express();
 
 app.use(express.json());
+
+app.use(auth);
 
 app.use('/graphql', graphqlHttp({
   schema: schema,
