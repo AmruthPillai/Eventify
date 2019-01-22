@@ -1,52 +1,35 @@
 import React, { Component } from 'react';
-import { Menu } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
+import './Navbar.css';
+
 export default class Navbar extends Component {
-	state = {};
-
-	handleItemClick = (e, { name }) =>
-		this.setState({
-			activeItem: name
-		});
-
 	render() {
-		const { activeItem } = this.state;
-
 		return (
-			<header className="Navbar">
-				<Menu stackable inverted className="ui container">
-					<Menu.Item>
-						<strong>Eventify</strong>
-					</Menu.Item>
+			<nav className="uk-navbar-container" uk-navbar="true">
+				<div className="uk-navbar-left">
+					<div className="uk-navbar-item uk-logo">
+						<img className="logo" src="./assets/logo.png" alt="Eventify Logo"/>
+					</div>
 
-					<Menu.Item
-						name="events"
-						as={NavLink}
-						to="/events"
-						active={activeItem === 'events'}
-						onClick={this.handleItemClick}
-					/>
+					<ul className="uk-navbar-nav">
+						<li name="events">
+							<NavLink to="/events">Events</NavLink>
+						</li>
+						<li name="bookings">
+							<NavLink to="/bookings">Bookings</NavLink>
+						</li>
+					</ul>
+				</div>
 
-					<Menu.Item
-						name="bookings"
-						as={NavLink}
-						to="/bookings"
-						active={activeItem === 'bookings'}
-						onClick={this.handleItemClick}
-					/>
-
-					<Menu.Menu position="right">
-						<Menu.Item
-							name="login"
-							as={NavLink}
-							to="/login"
-							active={activeItem === 'login'}
-							onClick={this.handleItemClick}
-						/>
-					</Menu.Menu>
-				</Menu>
-			</header>
+				<div className="uk-navbar-right">
+					<ul className="uk-navbar-nav">
+						<li name="login">
+							<NavLink to="/login">Login</NavLink>
+						</li>
+					</ul>
+				</div>
+			</nav>
 		);
 	}
 }
