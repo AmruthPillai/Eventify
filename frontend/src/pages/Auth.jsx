@@ -7,9 +7,7 @@ export default class AuthPage extends Component {
 				<div class="uk-card uk-card-default uk-card-body">
 					<h3 class="uk-card-title">Default</h3>
 					<p>
-						Lorem ipsum <a href="#">dolor</a> sit amet, consectetur adipiscing
-						elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-						aliqua.
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Id maiores officiis neque tenetur, quas dicta facilis beatae nihil? Fugiat, tempore amet quis eius aperiam molestiae. Vitae veniam debitis omnis at.
 					</p>
 				</div>
 			</div>
